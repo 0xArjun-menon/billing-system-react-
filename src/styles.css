@@ -74,11 +74,19 @@ input, select {
   align-items: center;
   padding: 14px 0;
   gap: 6px;
+  overflow: hidden;
 }
 
 .brand-icon {
-  font-size: 26px;
+  width: 38px !important;
+  height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(122, 46, 35, 0.15);
+  flex-shrink: 0;
 }
 
 .rail-link {

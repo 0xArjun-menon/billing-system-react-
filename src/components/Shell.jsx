@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import {
   DashboardIcon,
   BillingIcon,
@@ -21,7 +22,13 @@ export default function Shell() {
   return (
     <div className="shell">
       <aside className="icon-rail no-print">
-        <div className="brand-icon">🌼</div>
+        <img
+  src={logo}
+  alt="Ruchi - Kerala Meals & More"
+  className="brand-icon"
+  width={38}
+  height={38}
+/>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 6, width: '100%', alignItems: 'center' }}>
           {navItems.map(item => (
             <NavLink

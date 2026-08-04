@@ -9,7 +9,7 @@ export default function Receipt({ bill }) {
   return (
     <div className="receipt">
       <h2>🌼 Onam Sadhya &amp; Curry</h2>
-      <p className="center">Traditional Kerala Catering</p>
+      <p className="center">@Ruchi</p>
       <hr />
       <table>
         <tbody>
@@ -58,7 +58,7 @@ export default function Receipt({ bill }) {
         </tbody>
       </table>
       <hr />
-      <p className="center">Thank you! Happy Onam 🌼</p>
+      <p className="center">Thank you! Happy Onam </p>
     </div>
   );
 }

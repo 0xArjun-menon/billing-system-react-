@@ -14,6 +14,7 @@ function uid() {
 function seedData() {
   const now = new Date().toISOString();
   const products = [
+    [
     
     { id: uid(), name: 'Sadhya Full Meal (26 items) For 5 persons(no Rice)', category: 'Sadhya', price: 2500, stock: 100, unit: 'Box', available: true, createdAt: now },
 
@@ -132,7 +133,8 @@ function seedData() {
     { id: uid(), name: 'Round Chips', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
     { id: uid(), name: '4 Cut Chips', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
     { id: uid(), name: 'Sarkkaravaratty', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
-];
+]
+  ];
 
   return {
     products,

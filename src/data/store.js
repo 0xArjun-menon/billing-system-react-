@@ -14,26 +14,125 @@ function uid() {
 function seedData() {
   const now = new Date().toISOString();
   const products = [
-    { id: uid(), name: 'Sadhya Full Meal (26 items)', category: 'Sadhya', price: 250, stock: 100, unit: 'plate', available: true, createdAt: now },
-    { id: uid(), name: 'Sadhya Mini Meal (12 items)', category: 'Sadhya', price: 150, stock: 100, unit: 'plate', available: true, createdAt: now },
-    { id: uid(), name: 'Avial', category: 'Curry', price: 60, stock: 50, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Sambar', category: 'Curry', price: 50, stock: 50, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Olan', category: 'Curry', price: 55, stock: 40, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Thoran (Cabbage)', category: 'Curry', price: 45, stock: 40, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Pachadi', category: 'Curry', price: 40, stock: 40, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Kaalan', category: 'Curry', price: 55, stock: 30, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Pappadam', category: 'Sides', price: 10, stock: 200, unit: 'pc', available: true, createdAt: now },
-    { id: uid(), name: 'Banana Chips', category: 'Sides', price: 30, stock: 100, unit: 'packet', available: true, createdAt: now },
-    { id: uid(), name: 'Sharkara Varatti', category: 'Sides', price: 35, stock: 80, unit: 'packet', available: true, createdAt: now },
-    { id: uid(), name: 'Pickle (Mango)', category: 'Sides', price: 25, stock: 60, unit: 'packet', available: true, createdAt: now },
-    { id: uid(), name: 'Payasam (Ada Pradhaman)', category: 'Dessert', price: 70, stock: 60, unit: 'cup', available: true, createdAt: now },
-    { id: uid(), name: 'Payasam (Palada)', category: 'Dessert', price: 65, stock: 60, unit: 'cup', available: true, createdAt: now },
-    { id: uid(), name: 'Boiled Rice', category: 'Rice', price: 40, stock: 100, unit: 'plate', available: true, createdAt: now },
-    { id: uid(), name: 'Matta Rice', category: 'Rice', price: 45, stock: 100, unit: 'plate', available: true, createdAt: now },
-    { id: uid(), name: 'Curd', category: 'Sides', price: 20, stock: 80, unit: 'cup', available: true, createdAt: now },
-    { id: uid(), name: 'Pulissery', category: 'Curry', price: 50, stock: 40, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Erissery', category: 'Curry', price: 55, stock: 40, unit: 'bowl', available: true, createdAt: now },
-    { id: uid(), name: 'Banana (Nendran)', category: 'Sides', price: 15, stock: 150, unit: 'pc', available: true, createdAt: now }
+    [
+    { id: uid(), name: 'Sadhya Full Meal (26 items) For 5 persons(no Rice)', category: 'Sadhya', price: 2500, stock: 100, unit: 'Box', available: true, createdAt: now },
+
+    // ---------------- PAYASAMS ----------------
+    { id: uid(), name: 'Palada Payasam', category: 'Payasam', price: 340, stock: 100, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Palada Payasam', category: 'Payasam', price: 170, stock: 50, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Paripu Payasam', category: 'Payasam', price: 320, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Paripu Payasam', category: 'Payasam', price: 160, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Gothambu Payasam', category: 'Payasam', price: 320, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Gothambu Payasam', category: 'Payasam', price: 160, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Pazham Payasam', category: 'Payasam', price: 360, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Pazham Payasam', category: 'Payasam', price: 180, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Semiya Payasam', category: 'Payasam', price: 340, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Semiya Payasam', category: 'Payasam', price: 170, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Sarkara Adapradhaman', category: 'Payasam', price: 320, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Sarkara Adapradhaman', category: 'Payasam', price: 160, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Palgothamb Payasam', category: 'Payasam', price: 340, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Palgothamb Payasam', category: 'Payasam', price: 170, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Kadala Pradhaman', category: 'Payasam', price: 340, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Kadala Pradhaman', category: 'Payasam', price: 170, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    // ---------------- CURRIES / SIDE DISHES ----------------
+    { id: uid(), name: 'Sambar', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Sambar', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Aviyal', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Aviyal', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Kaalan', category: 'Curry', price: 360, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Kaalan', category: 'Curry', price: 180, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Mambazha Kaalan', category: 'Curry', price: 460, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Mambazha Kaalan', category: 'Curry', price: 230, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Pachadi', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Pachadi', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Koottucurry', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Koottucurry', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Erissery', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Erissery', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Masala Curry', category: 'Curry', price: 260, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Masala Curry', category: 'Curry', price: 130, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Thoran', category: 'Curry', price: 200, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Thoran', category: 'Curry', price: 100, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Mezhukkuvaratty', category: 'Curry', price: 260, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Mezhukkuvaratty', category: 'Curry', price: 130, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Idinjakka Thoran', category: 'Curry', price: 260, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Idinjakka Thoran', category: 'Curry', price: 130, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Kodappan Thoran', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Kodappan Thoran', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Koorkka Mezhukkuvaratty', category: 'Curry', price: 340, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Koorkka Mezhukkuvaratty', category: 'Curry', price: 170, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Theeyal', category: 'Curry', price: 260, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Theeyal', category: 'Curry', price: 130, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Thakkalikoottu', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Thakkalikoottu', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Cheeracurry', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Cheeracurry', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Sadya Stew', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Sadya Stew', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Olan', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Olan', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Kichadi', category: 'Curry', price: 200, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Kichadi', category: 'Curry', price: 100, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Neyparippu', category: 'Curry', price: 200, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Neyparippu', category: 'Curry', price: 100, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Rasam', category: 'Curry', price: 160, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Rasam', category: 'Curry', price: 80, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Pulisserri', category: 'Curry', price: 240, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Pulisserri', category: 'Curry', price: 120, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Moru', category: 'Curry', price: 160, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Moru', category: 'Curry', price: 80, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Chethumanga', category: 'Curry', price: 360, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Chethumanga', category: 'Curry', price: 180, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Manga Achar', category: 'Curry', price: 360, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Manga Achar', category: 'Curry', price: 180, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Vadukappuli', category: 'Curry', price: 360, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Vadukappuli', category: 'Curry', price: 180, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    { id: uid(), name: 'Puliyinji', category: 'Curry', price: 400, stock: 50, unit: '1 ltr', available: true, createdAt: now },
+    { id: uid(), name: 'Puliyinji', category: 'Curry', price: 200, stock: 40, unit: '0.5 ltr', available: true, createdAt: now },
+
+    // ---------------- SNACKS (no half-ltr variant) ----------------
+    { id: uid(), name: 'Unniyappam (9 nos)', category: 'Snacks', price: 70, stock: 100, unit: '9 nos', available: true, createdAt: now },
+    { id: uid(), name: 'Boli (5 nos)', category: 'Snacks', price: 90, stock: 100, unit: '5 nos', available: true, createdAt: now },
+    { id: uid(), name: 'Neyyappam (5 nos)', category: 'Snacks', price: 75, stock: 100, unit: '5 nos', available: true, createdAt: now },
+    { id: uid(), name: 'Mixture', category: 'Snacks', price: 100, stock: 100, unit: '250 gm', available: true, createdAt: now },
+    { id: uid(), name: 'Round Chips', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
+    { id: uid(), name: '4 Cut Chips', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
+    { id: uid(), name: 'Sarkkaravaratty', category: 'Snacks', price: 125, stock: 100, unit: '250 gm', available: true, createdAt: now },
+]
   ];
 
   return {

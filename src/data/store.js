@@ -15,6 +15,7 @@ function seedData() {
   const now = new Date().toISOString();
   const products = [
     [
+    
     { id: uid(), name: 'Sadhya Full Meal (26 items) For 5 persons(no Rice)', category: 'Sadhya', price: 2500, stock: 100, unit: 'Box', available: true, createdAt: now },
 
     // ---------------- PAYASAMS ----------------

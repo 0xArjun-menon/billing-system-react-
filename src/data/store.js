@@ -41,7 +41,12 @@ function seedData() {
     customers: [],
     bills: [],
     billItems: [],
-    counters: { bill: 1000 }
+    counters: { bill: 1000 },
+    settings: {
+      shopName: 'Onam Sadhya Store',
+      ownerWhatsApp: '', // e.g. '919876543210' (country code, no + or spaces)
+      autoOpenWhatsAppOnBill: true
+    }
   };
 }
 
@@ -53,7 +58,13 @@ function load() {
     return seeded;
   }
   try {
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // migrate older saved data that predates `settings`
+    if (!parsed.settings) {
+      parsed.settings = seedData().settings;
+      save(parsed);
+    }
+    return parsed;
   } catch {
     const seeded = seedData();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
@@ -69,6 +80,18 @@ export function resetAllData() {
   const seeded = seedData();
   save(seeded);
   return seeded;
+}
+
+// ---------- Settings ----------
+export function getSettings() {
+  return load().settings;
+}
+
+export function updateSettings(updates) {
+  const data = load();
+  data.settings = { ...data.settings, ...updates };
+  save(data);
+  return data.settings;
 }
 
 // ---------- Products ----------
@@ -236,7 +259,14 @@ export function createBill({ customerId, customerName, customerPhone, items, dis
   });
 
   save(data);
-  return getBillById(bill.id);
+  const fullBill = getBillById(bill.id);
+
+  // Fire-and-forget WhatsApp handoff: owner always, customer if we have a number.
+  if (data.settings?.autoOpenWhatsAppOnBill) {
+    sendBillOnWhatsApp(fullBill.id);
+  }
+
+  return fullBill;
 }
 
 export function deleteBill(id) {
@@ -258,6 +288,93 @@ export function deleteBill(id) {
 
   save(data);
   return true;
+}
+
+// ---------- WhatsApp ----------
+
+// Keeps digits only, and assumes India (91) if a 10-digit local number is given.
+function normalizePhone(phone) {
+  if (!phone) return '';
+  const digits = String(phone).replace(/\D/g, '');
+  if (!digits) return '';
+  if (digits.length === 10) return `91${digits}`;
+  return digits; // already has a country code (or is unusual — pass through)
+}
+
+function formatCurrency(n) {
+  return `₹${Number(n).toFixed(2)}`;
+}
+
+// Builds the human-readable bill text shared on WhatsApp.
+export function formatBillMessage(bill, { forOwner = false } = {}) {
+  const shopName = load().settings?.shopName || 'Onam Sadhya Store';
+  const lines = [];
+  lines.push(`*${shopName}*`);
+  lines.push(`Bill: ${bill.billNumber}`);
+  lines.push(`Date: ${new Date(bill.createdAt).toLocaleString('en-IN')}`);
+  if (forOwner) {
+    lines.push(`Customer: ${bill.customerName}${bill.customerPhone ? ' (' + bill.customerPhone + ')' : ''}`);
+  }
+  lines.push('');
+  lines.push('Items:');
+  bill.items.forEach(i => {
+    lines.push(`• ${i.name} x${i.quantity} — ${formatCurrency(i.lineTotal)}`);
+  });
+  lines.push('');
+  lines.push(`Subtotal: ${formatCurrency(bill.subtotal)}`);
+  if (bill.discount) lines.push(`Discount: -${formatCurrency(bill.discount)}`);
+  if (bill.tax) lines.push(`Tax: +${formatCurrency(bill.tax)}`);
+  lines.push(`*Total: ${formatCurrency(bill.total)}*`);
+  lines.push(`Payment: ${bill.paymentMethod}`);
+  if (!forOwner) {
+    lines.push('');
+    lines.push('Thank you for your order! Happy Onam 🌼');
+  }
+  return lines.join('\n');
+}
+
+export function buildWhatsAppLink(phone, message) {
+  const number = normalizePhone(phone);
+  const text = encodeURIComponent(message);
+  return number ? `https://wa.me/${number}?text=${text}` : `https://wa.me/?text=${text}`;
+}
+
+// Returns { owner, customer } wa.me links for a given bill.
+// `customer` is null if the bill has no phone number on file.
+export function getBillWhatsAppLinks(billId) {
+  const bill = getBillById(billId);
+  if (!bill) return { owner: null, customer: null };
+
+  const settings = load().settings;
+  const ownerNumber = settings?.ownerWhatsApp;
+
+  const owner = ownerNumber
+    ? buildWhatsAppLink(ownerNumber, formatBillMessage(bill, { forOwner: true }))
+    : null;
+
+  const customer = bill.customerPhone
+    ? buildWhatsAppLink(bill.customerPhone, formatBillMessage(bill, { forOwner: false }))
+    : null;
+
+  return { owner, customer };
+}
+
+// Opens WhatsApp chat tab(s) for a bill. Call this from a click handler
+// (e.g. a "Send" button) — browsers block window.open() outside a user gesture,
+// so this is best triggered directly by the person tapping something.
+export function sendBillOnWhatsApp(billId, { to = 'both' } = {}) {
+  const { owner, customer } = getBillWhatsAppLinks(billId);
+  const opened = { owner: false, customer: false };
+
+  if ((to === 'both' || to === 'owner') && owner) {
+    window.open(owner, '_blank');
+    opened.owner = true;
+  }
+  if ((to === 'both' || to === 'customer') && customer) {
+    window.open(customer, '_blank');
+    opened.customer = true;
+  }
+  return opened;
 }
 
 // ---------- Dashboard & Reports ----------
